@@ -11,6 +11,6 @@ namespace Vole {
             void set(uint8 index, uint8 value);
             void clear();
         private:
-            std::array<uint8, 16> data;
+            std::array<uint8, 16> values;
     };
-}
+};
