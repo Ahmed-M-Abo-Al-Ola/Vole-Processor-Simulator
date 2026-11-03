@@ -1,7 +1,5 @@
 #include "ALU.hpp"
 
-#include <iostream>
-#include <bitset>
 using namespace std;
 
 namespace Vole {
@@ -10,8 +8,6 @@ namespace Vole {
     }
 
     uint8 ALU::addFloat(uint8 a, uint8 b) const {
-        cout << bitset<32>(decodeFloat(a)) << endl;
-        cout << bitset<32>(decodeFloat(b)) << endl;
         return encodeFloat(decodeFloat(a) + decodeFloat(b));
     }
 
