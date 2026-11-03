@@ -16,7 +16,7 @@ namespace Vole {
             uint8 rotateRight(uint8 value, uint8 count);
 
         private:
-            uint32 decodeFloat(uint8 value) const;
-            uint8 encodeFloat(uint32 units) const;
+            std::int32_t decodeFloat(uint8 value) const;
+            uint8 encodeFloat(std::int32_t units) const;
     };
 };
