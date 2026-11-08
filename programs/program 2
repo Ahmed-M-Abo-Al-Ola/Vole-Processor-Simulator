@@ -1,0 +1,12 @@
+; =======================================================================
+; Vole Machine Program: Bitwise AND & Screen Display
+; Purpose: Load numbers (3A and C5), compute (3A AND C5),
+;          and display the result (00) on the screen.
+; =======================================================================
+2000    ; Load immediate value 00 into Register 0 (clear reference)
+213A    ; Load immediate value 3A into Register 1
+22C5    ; Load immediate value C5 into Register 2
+8312    ; Bitwise AND: R3 = R1 AND R2 (3A AND C5 = 00)
+3300    ; Store contents of R3 into Main Memory location 00
+33FF    ; Write contents of R3 to Screen output (Memory FF)
+C000    ; Halt execution

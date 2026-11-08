@@ -1,0 +1,13 @@
+; =======================================================================
+; Vole Machine Program: Sum of Three Numbers & Screen Display
+; Purpose: Load numbers (05, 07 and 03), compute (05 + 07 + 03),
+;          and display the result (0F) on the screen.
+; =======================================================================
+2005    ; Load immediate value 05 into Register 0
+2107    ; Load immediate value 07 into Register 1
+2203    ; Load immediate value 03 into Register 2
+5301    ; Add: R3 = R0 + R1 (05 + 07 = 0C)
+5423    ; Add: R4 = R3 + R2 (0C + 03 = 0F)
+3400    ; Store contents of R4 into Main Memory location 00
+34FF    ; Write contents of R4 to Screen output (Memory FF)
+C000    ; Halt execution
