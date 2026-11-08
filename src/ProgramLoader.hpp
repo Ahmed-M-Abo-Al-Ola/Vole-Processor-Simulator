@@ -3,7 +3,7 @@
 #include <string>
 #include "LoadResult.hpp"
 
-namespace vole {
+namespace Vole {
     class ProgramLoader {
         public:
             LoadResult loadFromFile(const string& filePath, const uint8_t address);

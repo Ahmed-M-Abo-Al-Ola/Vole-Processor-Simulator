@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-namespace vole
+namespace Vole
 {
     struct LoadResult
     {
