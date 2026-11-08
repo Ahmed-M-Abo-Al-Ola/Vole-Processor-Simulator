@@ -7,6 +7,6 @@ namespace vole {
         public:
             LoadResult loadFromFile(const string& filePath, const uint8_t address);
         private:
-            LoadResult _loadFromStream(const ifstream& strm, const uint8_t address);
+            LoadResult _loadFromStream(ifstream& strm, const uint8_t address);
     };
 }

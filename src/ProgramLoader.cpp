@@ -1,4 +1,6 @@
 #include <fstream>
+#include <vector>
+#include <string>
 #include "ProgramLoader.hpp"
 #include "LoadResult.hpp"
 using namespace std;
@@ -26,4 +28,21 @@ vole::LoadResult vole::ProgramLoader::loadFromFile(const string &filePath, const
     }
 
     return _loadFromStream(strm, address);
+}
+
+vole::LoadResult vole::ProgramLoader::_loadFromStream(ifstream &strm, const uint8_t address)
+{
+    vector<uint16_t> words;
+    int lineNumber = 0;
+    string raw;
+    
+    while (getline(strm, raw)) {
+        lineNumber++;
+
+        // remove comments
+        const int comment = raw.find(';');
+        if (comment != string::npos) raw.erase(comment);
+    }
+
+    return {true, "", 0, words};
 }
