@@ -62,7 +62,7 @@ string vole::ProgramLoader::_trim(const string &str)
     return str.substr(l, r - l + 1);
 }
 
-uint16_t vole::ProgramLoader::hexVal(const char &c)
+uint16_t vole::ProgramLoader::_hexVal(const char &c)
 {
     if (c >= '0' && c <= '9')
         return c - '0';
