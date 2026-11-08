@@ -1,0 +1,24 @@
+// File with team details and who did which part of the code
+SECTION:       S43, S44
+
+ZIP_FILE:      CS213_A2_Part2_S43,S44_20250882_20250883_20250885_20260963.zip
+
+ID1:           20250882
+NAME1:         Ahmed Mamdouh Abouelela Youssef
+FILES1:        Memory.hpp, Memory.cpp, Screen.hpp, Screen.cpp, LoadResult.hpp, ProgramLoader.hpp, ProgramLoader.cpp
+
+ID2:           20250883
+NAME2:         Ammar Khaled Soliman Abdelhamid
+FILES2:        [TODO]
+
+ID3:           20250885
+NAME3:         Moaaz Abdelmonem Eid Hanafy
+FILES3:        [TODO]
+
+ID4:           20260963
+NAME4:         Mohamed Nasser Rady Hanafy
+FILES4:        ALU.hpp, ALU.cpp, Instruction.hpp, Instruction.cpp, CPU.hpp, CPU.cpp, RegisterFile.hpp, RegisterFile.cpp
+
+GITHUB:        https://github.com/Ahmed-M-Abo-Al-Ola/Vole-Processor-Simulator [MAKE PUBLIC BEFORE SUBMISSION]
+VIDEO_DESIGN:  [TODO]
+VIDEO_GUI:     [TODO]
