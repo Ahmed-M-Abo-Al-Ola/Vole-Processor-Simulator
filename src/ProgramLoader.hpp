@@ -1,6 +1,7 @@
 #pragma once
 #include <istream>
 #include <string>
+#include <cstdint>
 #include "LoadResult.hpp"
 
 namespace Vole {

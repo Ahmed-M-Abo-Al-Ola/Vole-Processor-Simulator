@@ -1,5 +1,6 @@
 #include "Screen.hpp"
 #include <vector>
+#include <cstdint>
 using namespace std;
 
 void vole::Screen::write(uint8_t val) {

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <cstdint>
 using namespace std;
 
 namespace vole
