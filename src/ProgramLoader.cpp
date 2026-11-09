@@ -1,11 +1,11 @@
 #include "ProgramLoader.hpp"
 
-#include <cctype>
 #include <cstdint>
 #include <string>
 #include <vector>
 
 #include "Instruction.hpp"
+#include "Text.hpp"
 
 namespace Vole {
 
@@ -36,7 +36,7 @@ LoadResult ProgramLoader::_loadFromStream(std::ifstream& strm, std::uint8_t addr
             raw.erase(comment);
         }
 
-        const std::string line = _trim(raw);
+        const std::string line = trim(raw);
         if (line.empty()) {
             continue;
         }
@@ -71,20 +71,6 @@ LoadResult ProgramLoader::_loadFromStream(std::ifstream& strm, std::uint8_t addr
     }
 
     return {true, "", words};
-}
-
-std::string ProgramLoader::_trim(const std::string& str) {
-    std::size_t begin = 0;
-    while (begin < str.size() && std::isspace(static_cast<unsigned char>(str[begin])) != 0) {
-        ++begin;
-    }
-
-    std::size_t end = str.size();
-    while (end > begin && std::isspace(static_cast<unsigned char>(str[end - 1])) != 0) {
-        --end;
-    }
-
-    return str.substr(begin, end - begin);
 }
 
 int ProgramLoader::_hexVal(char c) {

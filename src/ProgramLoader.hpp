@@ -14,7 +14,6 @@ public:
 
 private:
     LoadResult _loadFromStream(std::ifstream& strm, std::uint8_t address);
-    std::string _trim(const std::string& str);
     int _hexVal(char c);
 };
 

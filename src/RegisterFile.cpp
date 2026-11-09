@@ -2,12 +2,18 @@
 
 namespace Vole {
 
-uint8 RegisterFile::get(uint8 index) const {
+uint8 RegisterFile::get(std::size_t index) const {
+    if (index >= values.size()) {
+        return 0;
+    }
+
     return values[index];
 }
 
-void RegisterFile::set(uint8 index, uint8 value) {
-    values[index] = value;
+void RegisterFile::set(std::size_t index, uint8 value) {
+    if (index < values.size()) {
+        values[index] = value;
+    }
 }
 
 void RegisterFile::clear() {

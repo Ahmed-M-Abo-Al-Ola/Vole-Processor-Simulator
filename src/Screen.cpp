@@ -10,7 +10,7 @@ void Screen::clear() {
     bytes_.clear();
 }
 
-const std::vector<std::uint8_t>& Screen::getBytes() const {
+const std::vector<std::uint8_t>& Screen::bytes() const {
     return bytes_;
 }
 

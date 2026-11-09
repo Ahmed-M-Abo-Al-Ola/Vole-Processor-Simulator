@@ -2,30 +2,18 @@
 
 #include <cstdint>
 #include <string>
-#include <vector>
 
 #include "CPU.hpp"
 #include "Screen.hpp"
+#include "Text.hpp"
 
 namespace Vole {
 namespace {
 
-char hexDigit(unsigned value) {
-    const char digits[] = "0123456789ABCDEF";
-    return digits[value % 16];
-}
-
-std::string hexByte(std::uint8_t value) {
-    std::string text;
-    text += hexDigit(value / 16);
-    text += hexDigit(value % 16);
-    return text;
-}
-
 std::string hexWord(std::uint16_t value) {
     std::string text;
-    text += hexByte(static_cast<std::uint8_t>(value / 256));
-    text += hexByte(static_cast<std::uint8_t>(value % 256));
+    text += hexByte(value / 256);
+    text += hexByte(value % 256);
     return text;
 }
 
@@ -108,7 +96,7 @@ std::string StateRenderer::renderCpu(const CPU& cpu) const {
 }
 
 std::string StateRenderer::renderScreen(const Screen& screen) const {
-    const auto& bytes = screen.getBytes();
+    const auto& bytes = screen.bytes();
     std::string text = "Screen: ";
 
     if (bytes.empty()) {

@@ -38,7 +38,7 @@ void CPU::setPc(uint8 value) {
 }
 
 void CPU::setRegister(std::size_t index, uint8 value) {
-    registers.set(static_cast<uint8>(index), value);
+    registers.set(index, value);
 }
 
 const uint8& CPU::getPc() const {
@@ -108,8 +108,6 @@ StepResult CPU::execute(const Instruction& instruction) {
             break;
         case 0xC:
             halted = true;
-            break;
-        default:
             break;
     }
 

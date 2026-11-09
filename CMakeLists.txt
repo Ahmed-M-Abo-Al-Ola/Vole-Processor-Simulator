@@ -25,6 +25,7 @@ set(VOLE_SOURCES
     src/MenuUI.cpp
     src/Screen.cpp
     src/StateRenderer.cpp
+    src/Text.cpp
     src/VoleMachine.cpp
 )
 

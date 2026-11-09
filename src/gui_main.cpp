@@ -21,8 +21,6 @@
 #include <QWidget>
 
 #include <cstdint>
-#include <string>
-#include <vector>
 
 #include "LoadResult.hpp"
 #include "StepResult.hpp"
@@ -145,7 +143,6 @@ QStatusBar::item { border: none; }
     titleLabel->setObjectName("titleLabel");
     titleLabel->setAlignment(Qt::AlignCenter);
 
-    QWidget* memoryBox = nullptr;
     memoryTable_ = new QTableWidget(16, 16, this);
     memoryTable_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     memoryTable_->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -179,9 +176,8 @@ QStatusBar::item { border: none; }
     memoryLayout->setContentsMargins(0, 0, 0, 0);
     memoryLayout->setSpacing(8);
     memoryLayout->addWidget(memoryTable_);
-    memoryBox = makeCard("Memory (16x16)", memoryLayout);
+    QWidget* memoryBox = makeCard("Memory (16x16)", memoryLayout);
 
-    QWidget* cpuBox = nullptr;
     QGridLayout* cpuLayout = new QGridLayout;
     cpuLayout->setContentsMargins(0, 0, 0, 0);
     cpuLayout->setHorizontalSpacing(18);
@@ -208,9 +204,8 @@ QStatusBar::item { border: none; }
     haltedLabel_ = new QLabel("no");
     haltedLabel_->setObjectName("valueLabel");
     cpuLayout->addWidget(haltedLabel_, 2, 1);
-    cpuBox = makeCard("CPU", cpuLayout);
+    QWidget* cpuBox = makeCard("CPU", cpuLayout);
 
-    QWidget* registerBox = nullptr;
     registerTable_ = new QTableWidget(8, 4, this);
     registerTable_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     registerTable_->setSelectionMode(QAbstractItemView::NoSelection);
@@ -254,9 +249,8 @@ QStatusBar::item { border: none; }
     registerLayout->setContentsMargins(0, 0, 0, 0);
     registerLayout->setSpacing(8);
     registerLayout->addWidget(registerTable_);
-    registerBox = makeCard("Registers", registerLayout);
+    QWidget* registerBox = makeCard("Registers", registerLayout);
 
-    QWidget* screenBox = nullptr;
     screenConsole_ = new QPlainTextEdit;
     screenConsole_->setReadOnly(true);
     screenConsole_->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
@@ -266,9 +260,8 @@ QStatusBar::item { border: none; }
     screenLayout->setContentsMargins(0, 0, 0, 0);
     screenLayout->setSpacing(8);
     screenLayout->addWidget(screenConsole_);
-    screenBox = makeCard("Screen output (3RFF)", screenLayout);
+    QWidget* screenBox = makeCard("Screen output (3RFF)", screenLayout);
 
-    QWidget* controlBox = nullptr;
     addressEdit_ = new QLineEdit("00");
     addressEdit_->setMaxLength(2);
     addressEdit_->setValidator(new QRegularExpressionValidator(QRegularExpression("[0-9A-Fa-f]{1,2}"), this));
@@ -300,7 +293,7 @@ QStatusBar::item { border: none; }
     controlLayout->addWidget(stepButton_, 2, 1);
     controlLayout->addWidget(clearButton_, 3, 0);
     controlLayout->addWidget(resetButton_, 3, 1);
-    controlBox = makeCard("Controls", controlLayout);
+    QWidget* controlBox = makeCard("Controls", controlLayout);
 
     QVBoxLayout* rightLayout = new QVBoxLayout;
     rightLayout->setSpacing(12);
@@ -354,14 +347,9 @@ void MainWindow::loadProgram() {
 }
 
 void MainWindow::loadProgramFile(const QString& path, unsigned address) {
-    if (address > 0xFEu || (address & 1u) != 0u) {
-        QMessageBox::warning(this, "Invalid address", "Load address must be even, from 00 to FE.");
-        return;
-    }
-
     const Vole::LoadResult result = machine_.loadProgram(path.toStdString(), static_cast<std::uint8_t>(address));
     if (!result.ok) {
-        QMessageBox::warning(this, "Load failed", QString::fromStdString(result.err));
+        QMessageBox::warning(this, "Load failed", QString::fromStdString(result.error));
         return;
     }
 
@@ -453,7 +441,7 @@ void MainWindow::refresh() {
 }
 
 void MainWindow::updateScreen() {
-    const auto& bytes = machine_.screen().getBytes();
+    const auto& bytes = machine_.screen().bytes();
     if (bytes.empty()) {
         screenConsole_->setPlainText("(empty)");
         return;

@@ -8,7 +8,7 @@ namespace Vole {
 
 struct LoadResult {
     bool ok = false;
-    std::string err;
+    std::string error;
     std::vector<std::uint16_t> words;
 };
 
