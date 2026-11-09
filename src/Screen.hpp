@@ -1,18 +1,18 @@
 #pragma once
-#include <vector>
+
 #include <cstdint>
-using namespace std;
+#include <vector>
 
-namespace vole
-{
-    class Screen
-    {
-    public:
-        void write(uint8_t val);
-        void clear();
-        vector<uint8_t> getBytes() const;
+namespace Vole {
 
-    private:
-        vector<uint8_t> bytes_;
-    };
+class Screen {
+public:
+    void write(std::uint8_t value);
+    void clear();
+    const std::vector<std::uint8_t>& getBytes() const;
+
+private:
+    std::vector<std::uint8_t> bytes_;
+};
+
 }

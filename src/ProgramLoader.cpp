@@ -1,113 +1,108 @@
 #include "ProgramLoader.hpp"
-#include "LoadResult.hpp"
-#include "Instruction.hpp"
-#include <fstream>
-#include <vector>
+
+#include <cctype>
+#include <cstddef>
+#include <cstdint>
 #include <string>
-using namespace std;
+#include <vector>
 
-Vole::LoadResult Vole::ProgramLoader::loadFromFile(const string &filePath, const uint8_t address)
-{
-    ifstream strm(filePath);
+#include "Instruction.hpp"
 
-    // check if file couldn't be opened
-    if (!strm.is_open())
-    {
-        return LoadResult{false, "could not open the file: " + filePath, 0, {}};
+namespace Vole {
+
+LoadResult ProgramLoader::loadFromFile(const std::string& filePath, std::uint8_t address) {
+    std::ifstream strm(filePath);
+
+    if (!strm.is_open()) {
+        return {false, "could not open the file: " + filePath, {}};
     }
 
-    // check if address is odd
-    if (address & 1u != 0)
-    {
-        return LoadResult{false, "address must be even", 0, {}};
+    if ((address & 1u) != 0u) {
+        return {false, "address must be even", {}};
     }
 
-    // check if address is 0xFF or greater
-    if (address > 0xFE)
-    {
-        return LoadResult{false, "address must be withing 0x00 and 0xFE", 0, {}};
+    if (address > 0xFE) {
+        return {false, "address must be withing 0x00 and 0xFE", {}};
     }
 
     return _loadFromStream(strm, address);
 }
 
-Vole::LoadResult Vole::ProgramLoader::_loadFromStream(ifstream &strm, const uint8_t address)
-{
-    vector<uint16_t> words;
+LoadResult ProgramLoader::_loadFromStream(std::ifstream& strm, std::uint8_t address) {
+    std::vector<std::uint16_t> words;
     int lineNumber = 0;
-    string raw;
+    std::string raw;
 
-    while (getline(strm, raw))
-    {
-        lineNumber++;
+    while (std::getline(strm, raw)) {
+        ++lineNumber;
 
-        // remove comments
-        const int comment = raw.find(';');
-        if (comment != string::npos)
+        const std::size_t comment = raw.find(';');
+        if (comment != std::string::npos) {
             raw.erase(comment);
-
-        // remove spaces
-        string line = _trim(raw);
-        if (line.empty())
-            continue;
-
-        const auto fail = [lineNumber](const string &message)
-        {
-            return LoadResult{
-                false,
-                "line number: " + to_string(lineNumber) + ": " + message,
-                0,
-                {}};
-        };
-
-        // check for words longer or shorter than 4 characters
-        if (line.size() != 4)
-            return fail("instructions must consist of 4 hex digits");
-
-        // decode the digits into an uint16_t
-        uint16_t word = 0;
-        for (const char &c : line)
-        {
-            uint16_t digit = _hexVal(c);
-            if (digit < 0)
-                return fail("invalid hex digit");
-            word = (word << 4) | static_cast<uint16_t>(digit);
         }
 
-        // verify the word is a valid instruction
+        const std::string line = _trim(raw);
+        if (line.empty()) {
+            continue;
+        }
+
+        if (line.size() != 4) {
+            return {false,
+                    "line number: " + std::to_string(lineNumber) + ": instructions must consist of 4 hex digits",
+                    {}};
+        }
+
+        std::uint16_t word = 0;
+        for (char c : line) {
+            const int digit = _hexVal(c);
+            if (digit < 0) {
+                return {false, "line number: " + std::to_string(lineNumber) + ": invalid hex digit", {}};
+            }
+            word = static_cast<std::uint16_t>((word << 4) | static_cast<std::uint16_t>(digit));
+        }
+
         const Instruction instruction(word);
-        if (!instruction.isValid())
-            return fail("invalid instruction: " + instruction.error());
+        if (!instruction.isValid()) {
+            return {false,
+                    "line number: " + std::to_string(lineNumber) + ": invalid instruction: " + instruction.error(),
+                    {}};
+        }
 
         words.push_back(word);
     }
 
-    if (address + (words.size() * 2) > 256)
-        return LoadResult{false, "the program does not fit in memory", 0, {}};
+    if (static_cast<std::size_t>(address) + words.size() * 2 > 256) {
+        return {false, "the program does not fit in memory", {}};
+    }
 
-    return {true, "", 0, words};
+    return {true, "", words};
 }
 
-string Vole::ProgramLoader::_trim(const string &str)
-{
-    int l = 0, n = str.length();
-    while (l < n && str[l] == ' ')
-        l++;
+std::string ProgramLoader::_trim(const std::string& str) {
+    std::size_t begin = 0;
+    while (begin < str.size() && std::isspace(static_cast<unsigned char>(str[begin])) != 0) {
+        ++begin;
+    }
 
-    int r = n - 1;
-    while (n >= 0 && str[r] == ' ')
-        r--;
+    std::size_t end = str.size();
+    while (end > begin && std::isspace(static_cast<unsigned char>(str[end - 1])) != 0) {
+        --end;
+    }
 
-    return str.substr(l, r - l + 1);
+    return str.substr(begin, end - begin);
 }
 
-uint16_t Vole::ProgramLoader::_hexVal(const char &c)
-{
-    if (c >= '0' && c <= '9')
+int ProgramLoader::_hexVal(char c) {
+    if (c >= '0' && c <= '9') {
         return c - '0';
-    if (c >= 'a' && c <= 'f')
+    }
+    if (c >= 'a' && c <= 'f') {
         return c - 'a' + 10;
-    if (c >= 'A' && c <= 'F')
+    }
+    if (c >= 'A' && c <= 'F') {
         return c - 'A' + 10;
+    }
     return -1;
+}
+
 }

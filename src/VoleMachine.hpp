@@ -1,14 +1,18 @@
 #pragma once
-#include "Memory.hpp"
-#include "Screen.hpp"
-#include "CPU.hpp"
-#include "ProgramLoader.hpp"
-#include "LoadResult.hpp"
-#include "StepResult.hpp"
+
 #include <cstddef>
 #include <cstdint>
 #include <string>
+
+#include "CPU.hpp"
+#include "LoadResult.hpp"
+#include "Memory.hpp"
+#include "ProgramLoader.hpp"
+#include "Screen.hpp"
+#include "StepResult.hpp"
+
 namespace Vole {
+
 class VoleMachine {
 private:
     Memory memory_;
@@ -29,4 +33,4 @@ public:
     const Screen& screen() const;
 };
 
-} 
+}

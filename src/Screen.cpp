@@ -1,16 +1,17 @@
 #include "Screen.hpp"
-#include <vector>
-#include <cstdint>
-using namespace std;
 
-void vole::Screen::write(uint8_t val) {
-    bytes_.push_back(val);
+namespace Vole {
+
+void Screen::write(std::uint8_t value) {
+    bytes_.push_back(value);
 }
 
-void vole::Screen::clear() {
+void Screen::clear() {
     bytes_.clear();
 }
 
-vector<uint8_t> vole::Screen::getBytes() const {
+const std::vector<std::uint8_t>& Screen::getBytes() const {
     return bytes_;
+}
+
 }
