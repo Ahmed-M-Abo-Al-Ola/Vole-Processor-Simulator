@@ -1,7 +1,6 @@
 #include "MenuUI.hpp"
 
 #include <cctype>
-#include <cstddef>
 #include <cstdint>
 #include <exception>
 #include <istream>
