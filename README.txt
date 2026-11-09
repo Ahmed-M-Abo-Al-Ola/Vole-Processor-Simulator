@@ -12,6 +12,8 @@ to address FF go to the screen instead of RAM.
 CMakeLists.txt      CLI, core library, optional GUI
 src/                simulator, CLI, and GUI sources
 programs/           sample VoLE programs
+programs2/          extra test programs
+screenshots/        GUI runs of the test programs
 ```
 
 ## Linux

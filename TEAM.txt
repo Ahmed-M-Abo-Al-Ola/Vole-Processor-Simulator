@@ -18,6 +18,6 @@ ID4:           20250885
 NAME4:         Moaaz Abdelmonem Eid Hanafy
 FILES4:        StateRenderer.hpp, StateRenderer.cpp, MenuUI.hpp, MenuUI.cpp, gui_main.cpp
 
-GITHUB:        https://github.com/Ahmed-M-Abo-Al-Ola/Vole-Processor-Simulator [MAKE PUBLIC BEFORE SUBMISSION]
+GITHUB:        https://github.com/Ahmed-M-Abo-Al-Ola/Vole-Processor-Simulator
 VIDEO_DESIGN:  https://drive.google.com/drive/folders/1IifYzay01GvX4N3up4l4NRC7pOwTaoui?usp=sharing
 VIDEO_GUI:     https://drive.google.com/file/d/10D2_pat77lkkgeC2Xg0n5RJxWpuB47BA/view?usp=drive_link
