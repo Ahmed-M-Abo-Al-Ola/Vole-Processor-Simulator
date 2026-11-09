@@ -5,10 +5,10 @@
 #include "ProgramLoader.hpp"
 #include "LoadResult.hpp"
 #include "StepResult.hpp"
-#include <cstdint>
 #include <cstddef>
+#include <cstdint>
 #include <string>
-
+namespace Vole {
 class VoleMachine {
 private:
     Memory memory_;
@@ -29,4 +29,4 @@ public:
     const Screen& screen() const;
 };
 
-#endif
+} 
