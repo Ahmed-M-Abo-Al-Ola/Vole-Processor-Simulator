@@ -20,4 +20,4 @@ FILES4:        ALU.hpp, ALU.cpp, Instruction.hpp, Instruction.cpp, CPU.hpp, CPU.
 
 GITHUB:        https://github.com/Ahmed-M-Abo-Al-Ola/Vole-Processor-Simulator [MAKE PUBLIC BEFORE SUBMISSION]
 VIDEO_DESIGN:  https://drive.google.com/drive/folders/1IifYzay01GvX4N3up4l4NRC7pOwTaoui?usp=sharing
-VIDEO_GUI:     [ADD PUBLIC OR UNLISTED GUI DEMO LINK]
+VIDEO_GUI:     https://drive.google.com/file/d/10D2_pat77lkkgeC2Xg0n5RJxWpuB47BA/view?usp=drive_link
