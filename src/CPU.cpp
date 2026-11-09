@@ -1,5 +1,12 @@
 #include "CPU.hpp"
 
+#include <cstddef>
+
+#include "Instruction.hpp"
+#include "Memory.hpp"
+#include "Screen.hpp"
+#include "StepResult.hpp"
+
 namespace Vole {
 
 CPU::CPU(Memory& memoryRef, Screen& screenRef) : memory(memoryRef), screen(screenRef), pc(0), ir(0), halted(false) {

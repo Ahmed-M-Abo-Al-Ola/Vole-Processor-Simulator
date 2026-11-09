@@ -1,5 +1,8 @@
 #include "Screen.hpp"
 
+#include <cstdint>
+#include <vector>
+
 namespace Vole {
 
 void Screen::write(std::uint8_t value) {

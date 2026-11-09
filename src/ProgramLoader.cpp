@@ -1,10 +1,13 @@
 #include "ProgramLoader.hpp"
 
+#include <cstddef>
 #include <cstdint>
+#include <fstream>
 #include <string>
 #include <vector>
 
 #include "Instruction.hpp"
+#include "LoadResult.hpp"
 #include "Text.hpp"
 
 namespace Vole {

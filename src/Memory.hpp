@@ -14,7 +14,7 @@ public:
     void clear();
 
 private:
-    std::array<uint8, 256> cells;
+    std::array<uint8, 256> cells{};
 };
 
 }

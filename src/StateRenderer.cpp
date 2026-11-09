@@ -87,7 +87,7 @@ std::string StateRenderer::renderCpu(const CPU& cpu) const {
     text += "PC=";
     text += hexByte(cpu.getPc());
     text += "  IR=";
-    text += hexWord(static_cast<std::uint16_t>(cpu.getIr()));
+    text += hexWord(cpu.getIr());
     text += "  halted=";
     text += cpu.isHalted() ? "yes" : "no";
     text += '\n';

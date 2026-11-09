@@ -15,7 +15,7 @@ public:
     void clear();
 
 private:
-    std::array<uint8, 16> values;
+    std::array<uint8, 16> values{};
 };
 
 }

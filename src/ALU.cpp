@@ -1,5 +1,7 @@
 #include "ALU.hpp"
 
+#include <cstdint>
+
 namespace Vole {
 
 uint8 ALU::addTwosComplement(uint8 a, uint8 b) const {
@@ -22,7 +24,7 @@ uint8 ALU::bitwiseXor(uint8 a, uint8 b) const {
     return static_cast<uint8>(a ^ b);
 }
 
-uint8 ALU::rotateRight(uint8 value, unsigned count) {
+uint8 ALU::rotateRight(uint8 value, unsigned count) const {
     for (unsigned i = 0; i < count; i++) {
         uint8 LSB = value & 0b00000001;
         LSB = LSB << 7;

@@ -13,7 +13,7 @@ public:
     uint8 bitwiseOr(uint8 a, uint8 b) const;
     uint8 bitwiseAnd(uint8 a, uint8 b) const;
     uint8 bitwiseXor(uint8 a, uint8 b) const;
-    uint8 rotateRight(uint8 value, unsigned count);
+    uint8 rotateRight(uint8 value, unsigned count) const;
 
 private:
     std::int32_t decodeFloat(uint8 value) const;

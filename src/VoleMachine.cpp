@@ -1,5 +1,12 @@
 #include "VoleMachine.hpp"
 
+#include <cstddef>
+#include <cstdint>
+#include <string>
+
+#include "LoadResult.hpp"
+#include "StepResult.hpp"
+
 namespace Vole {
 
 VoleMachine::VoleMachine() : memory_(), screen_(), cpu_(memory_, screen_), loader_() {
