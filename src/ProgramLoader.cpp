@@ -1,7 +1,6 @@
 #include "ProgramLoader.hpp"
 
 #include <cctype>
-#include <cstddef>
 #include <cstdint>
 #include <string>
 #include <vector>
