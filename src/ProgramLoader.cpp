@@ -22,7 +22,7 @@ LoadResult ProgramLoader::loadFromFile(const std::string& filePath, std::uint8_t
     }
 
     if (address > 0xFE) {
-        return {false, "address must be withing 0x00 and 0xFE", {}};
+        return {false, "address must be within 0x00 and 0xFE", {}};
     }
 
     return _loadFromStream(strm, address);
@@ -34,7 +34,7 @@ LoadResult ProgramLoader::_loadFromStream(std::ifstream& strm, std::uint8_t addr
     std::string raw;
 
     while (std::getline(strm, raw)) {
-        ++lineNumber;
+        lineNumber++;
 
         const std::size_t comment = raw.find(';');
         if (comment != std::string::npos) {
