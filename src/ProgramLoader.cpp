@@ -20,10 +20,6 @@ LoadResult ProgramLoader::loadFromFile(const std::string& filePath, std::uint8_t
         return {false, "address must be even", {}};
     }
 
-    if (address > 0xFE) {
-        return {false, "address must be within 0x00 and 0xFE", {}};
-    }
-
     return _loadFromStream(strm, address);
 }
 
