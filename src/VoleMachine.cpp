@@ -12,13 +12,6 @@ LoadResult VoleMachine::loadProgram(const std::string& path, std::uint8_t addres
         return result;
     }
 
-    const std::size_t bytes = result.words.size() * 2;
-    if (static_cast<std::size_t>(address) + bytes > 256) {
-        result.ok = false;
-        result.err = "program does not fit in memory at the given address";
-        return result;
-    }
-
     reset();
     for (std::size_t i = 0; i < result.words.size(); ++i) {
         const std::uint16_t word = result.words[i];
