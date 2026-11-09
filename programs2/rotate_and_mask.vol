@@ -1,0 +1,13 @@
+; ======================================================================
+; rotate_and_mask.vol  -  Rotate right then AND mask (by Sara)
+; Purpose: Load 5B, rotate right by 2 (= D6), show it, AND with mask 0F (= 06), show it.
+; Expected screen output: D6 06
+; ======================================================================
+215B    ; R1 = 5B
+4012    ; R2 = R1
+A202    ; rotate R2 right by 2 -> D6
+32FF    ; screen <- R2 (D6)
+200F    ; R0 = 0F (mask)
+8320    ; R3 = R2 AND R0 = 06
+33FF    ; screen <- R3 (06)
+C000    ; halt

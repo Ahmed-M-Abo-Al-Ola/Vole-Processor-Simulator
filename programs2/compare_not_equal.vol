@@ -1,0 +1,14 @@
+; ======================================================================
+; compare_not_equal.vol  -  Conditional jump: numbers are different
+; Purpose: Same program as compare_equal.vol but R1 = 06, so the result is 00.
+; Expected screen output: 00
+; ======================================================================
+2005    ; 00: R0 = 05
+2106    ; 02: R1 = 06
+B10A    ; 04: if R1 = R0 jump to 0A
+2200    ; 06: R2 = 00 (not equal)
+B00E    ; 08: jump to 0E (R0 = R0 is always true)
+2201    ; 0A: R2 = 01 (equal)
+B00E    ; 0C: jump to 0E
+32FF    ; 0E: screen <- R2
+C000    ; 10: halt

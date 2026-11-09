@@ -1,0 +1,11 @@
+; ======================================================================
+; xor_then_rotate.vol  -  XOR followed by rotate right
+; Purpose: XOR 0A with 08 (= 02), rotate right by 1 (= 01) and show it.
+; Expected screen output: 01
+; ======================================================================
+200A    ; R0 = 0A
+2108    ; R1 = 08
+9A01    ; RA = R0 XOR R1 = 02
+AA01    ; rotate RA right by 1 -> 01
+3AFF    ; screen <- RA
+C000    ; halt

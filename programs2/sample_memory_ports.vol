@@ -1,0 +1,18 @@
+; ======================================================================
+; sample_memory_ports.vol  -  Add, AND, memory stores and the FF screen port
+; Purpose: Arithmetic and logic with stores to RAM, then print 0F on the screen.
+; Also leaves RAM: F0 = 0F, F1 = 03, F2 = 11.
+; Expected screen output: 0F
+; ======================================================================
+200A    ; R0 = 0A
+2105    ; R1 = 05
+5201    ; R2 = R0 + R1 = 0F
+32F0    ; mem[F0] <- R2 (0F)
+2303    ; R3 = 03
+8423    ; R4 = R2 AND R3 = 03
+34F1    ; mem[F1] <- R4 (03)
+2502    ; R5 = 02
+5625    ; R6 = R2 + R5 = 11
+36F2    ; mem[F2] <- R6 (11)
+32FF    ; screen <- R2 (0F)
+C000    ; halt

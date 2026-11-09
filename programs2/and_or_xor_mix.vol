@@ -1,0 +1,17 @@
+; ======================================================================
+; and_or_xor_mix.vol  -  AND, ADD, MOVE, XOR and OR combined
+; Purpose: AND 6 and 7, add 2, then combine with the XOR and OR results.
+; Expected screen output: 10
+; ======================================================================
+2006    ; R0 = 06
+2107    ; R1 = 07
+8201    ; R2 = R0 AND R1 = 06
+2302    ; R3 = 02
+5223    ; R2 = R2 + R3 = 08
+4024    ; copy R2 into R4 (R4 = 08)
+9501    ; R5 = R0 XOR R1 = 01
+7601    ; R6 = R0 OR R1 = 07
+5745    ; R7 = R4 + R5 = 09
+5876    ; R8 = R7 + R6 = 10 hex (16 dec)
+38FF    ; screen <- R8
+C000    ; halt

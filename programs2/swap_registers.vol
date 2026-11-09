@@ -1,0 +1,13 @@
+; ======================================================================
+; swap_registers.vol  -  MOVE (opcode 4): swap two registers
+; Purpose: Swap R0 and R1 through R2, then show R0 and R1.
+; Expected screen output: 07 05
+; ======================================================================
+2005    ; R0 = 05
+2107    ; R1 = 07
+4002    ; R2 = R0 (temp)
+4010    ; R0 = R1
+4021    ; R1 = R2
+30FF    ; screen <- R0 (07)
+31FF    ; screen <- R1 (05)
+C000    ; halt
