@@ -33,7 +33,7 @@ add_library(vole_core STATIC ${VOLE_SOURCES})
 target_include_directories(vole_core PUBLIC src)
 target_compile_options(vole_core PRIVATE ${VOLE_WARNINGS})
 
-add_executable(vole src/main.cpp)
+add_executable(vole "src/A2-S43,S44-20250882_20250883_20260963_20250885.cpp")
 target_link_libraries(vole PRIVATE vole_core)
 target_compile_options(vole PRIVATE ${VOLE_WARNINGS})
 
