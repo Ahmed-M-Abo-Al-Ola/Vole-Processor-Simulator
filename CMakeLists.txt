@@ -45,6 +45,20 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/MenuUI.cpp)
     target_compile_options(vole PRIVATE ${VOLE_WARNINGS})
 endif()
 
+option(VOLE_BUILD_GUI "Build the Qt GUI" ON)
+
+if(VOLE_BUILD_GUI)
+    find_package(Qt6 QUIET COMPONENTS Widgets)
+    if(Qt6Widgets_FOUND)
+        add_executable(vole_gui src/gui_main.cpp)
+        set_target_properties(vole_gui PROPERTIES AUTOMOC ON)
+        target_link_libraries(vole_gui PRIVATE vole_core Qt6::Widgets)
+        target_compile_options(vole_gui PRIVATE ${VOLE_WARNINGS})
+    else()
+        message(STATUS "Qt6 Widgets not found; skipping vole_gui")
+    endif()
+endif()
+
 # ---- tests: one executable per track ---------------------------------------
 enable_testing()
 
