@@ -68,3 +68,5 @@ Testing/
 .cache/
 
 src/test.cpp
+
+.qtcreator/
