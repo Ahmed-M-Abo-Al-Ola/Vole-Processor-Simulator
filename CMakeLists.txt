@@ -10,7 +10,6 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-# Warnings for our own code (the Definition of Done says: no warnings)
 if(MSVC)
     set(VOLE_WARNINGS /W4)
 else()
@@ -18,7 +17,6 @@ else()
 endif()
 
 # ---- core library: everything except main.cpp ----------------------------
-# Shared by the application and every test, so each .cpp is compiled once.
 set(VOLE_SOURCES
     src/ALU.cpp
     src/CPU.cpp
@@ -30,8 +28,6 @@ set(VOLE_SOURCES
     src/VoleMachine.cpp
 )
 
-# Moaaz's files are added automatically as soon as they are pushed.
-# Once they exist, move them into the list above.
 foreach(optional MenuUI StateRenderer)
     if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/${optional}.cpp)
         list(APPEND VOLE_SOURCES src/${optional}.cpp)
@@ -50,8 +46,6 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/MenuUI.cpp)
 endif()
 
 # ---- tests: one executable per track ---------------------------------------
-# Run all with:  ctest --test-dir build --output-on-failure
-# A test file that is missing or still empty is skipped instead of breaking the build.
 enable_testing()
 
 foreach(track core storage ui integration)
@@ -65,7 +59,6 @@ foreach(track core storage ui integration)
         add_executable(test_${track} ${test_src})
         target_link_libraries(test_${track} PRIVATE vole_core)
         target_compile_options(test_${track} PRIVATE ${VOLE_WARNINGS})
-        # Absolute path, so tests find programs/*.vol from any working directory
         target_compile_definitions(test_${track} PRIVATE
             VOLE_PROGRAMS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/programs")
         add_test(NAME test_${track} COMMAND test_${track}
